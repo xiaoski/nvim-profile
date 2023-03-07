@@ -4,35 +4,39 @@ packer.startup({
     -- 管理自己 manage itself
     use 'wbthomason/packer.nvim'
     -- 插件列表 Plugin list
-    
+
     -- 主题 Themes
     use("folke/tokyonight.nvim")
 
     -- 工具 utility
     use({ "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons" })
-    use({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" }})
+    use({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" } })
     use({ "nvim-lualine/lualine.nvim", tag = "v3.*", requires = { "kyazdani42/nvim-web-devicons" } })
     use("arkav/lualine-lsp-progress")
     use { 'nvim-telescope/telescope.nvim', requires = { "nvim-lua/plenary.nvim" } }
-    use("ahmedkhalf/project.nvim")    
+    use("ahmedkhalf/project.nvim")
     -- telescope extensions
     use "LinArcX/telescope-env.nvim"
-    -- dashboard-nvim 
-    use{"glepnir/dashboard-nvim", event = "VimEnter"}
+    -- dashboard-nvim
+    use({ "glepnir/dashboard-nvim", event = "VimEnter" })
 
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    --------------------- LSP --------------------
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
+    -- Lspconfig
+    use({ "neovim/nvim-lspconfig" })
   end,
   config = {
     -- 并发数限制
     max_jobs = 16,
     display = {
-        open_fn = function()
-            return require("packer.util").float({ border = "single" })
-        end,
+      open_fn = function()
+        return require("packer.util").float({ border = "single" })
+      end,
     },
   },
 })
-
 
 pcall(
   vim.cmd,

@@ -13,3 +13,8 @@ require("plugin-config.lualine")
 require("plugin-config.dashboard")
 require("plugin-config.project")
 require("plugin-config.nvim-treesitter")
+require("plugin-config.mason")
+-- 内置LSP (新增)
+-- require("lsp.setup")
+--
+
