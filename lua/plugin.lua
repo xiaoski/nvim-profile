@@ -1,49 +1,56 @@
-local packer = require("packer")
-packer.startup({
-  function(use)
-    -- 管理自己 manage itself
-    use 'wbthomason/packer.nvim'
-    -- 插件列表 Plugin list
-
-    -- 主题 Themes
-    use("folke/tokyonight.nvim")
-
-    -- 工具 utility
-    use({ "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons" })
-    use({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" } })
-    use({ "nvim-lualine/lualine.nvim", tag = "v3.*", requires = { "kyazdani42/nvim-web-devicons" } })
-    use("arkav/lualine-lsp-progress")
-    use { 'nvim-telescope/telescope.nvim', requires = { "nvim-lua/plenary.nvim" } }
-    use("ahmedkhalf/project.nvim")
-    -- telescope extensions
-    use "LinArcX/telescope-env.nvim"
-    -- dashboard-nvim
-    use({ "glepnir/dashboard-nvim", event = "VimEnter" })
-
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    --------------------- LSP --------------------
-    use "williamboman/mason.nvim"
-    use "williamboman/mason-lspconfig.nvim"
-    -- Lspconfig
-    use({ "neovim/nvim-lspconfig" })
-  end,
-  config = {
-    -- 并发数限制
-    max_jobs = 16,
-    display = {
-      open_fn = function()
-        return require("packer.util").float({ border = "single" })
-      end,
-    },
+(require("lazy")).setup({
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000
   },
-})
-
-pcall(
-  vim.cmd,
-  [[
-    augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugin.lua source <afile> | PackerSync
-    augroup end
-  ]]
-)
+  {
+    "folke/which-key.nvim",
+    lazy = true
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    }
+  },
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    }
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    }
+  },
+  {
+    "arkav/lualine-lsp-progress"
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    }
+  },
+  {
+    "ahmedkhalf/project.nvim"
+  },
+  {
+    "glepnir/dashboard-nvim",
+    event = "VimEnter",
+    config = function()
+      require("pconfig.dashboard")
+    end,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    }
+  }
+});
+require("pconfig.nvim-tree")
+require("pconfig.bufferline")
+require("pconfig.lualine")
+require("pconfig.telescope")
+require("pconfig.project")

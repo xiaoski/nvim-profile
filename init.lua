@@ -1,20 +1,19 @@
--- 基础设置
-require('basic')
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-require('keybinding')
-require('plugin')
+require("basic")
+require("plugin")
 require("colorscheme")
+require("keybinding")
 
--- 插件设置 plugin config
-require("plugin-config.nvim-tree")
-require("plugin-config.bufferline")
-require("plugin-config.telescope")
-require("plugin-config.lualine")
-require("plugin-config.dashboard")
-require("plugin-config.project")
-require("plugin-config.nvim-treesitter")
-require("plugin-config.mason")
--- 内置LSP (新增)
--- require("lsp.setup")
---
 
