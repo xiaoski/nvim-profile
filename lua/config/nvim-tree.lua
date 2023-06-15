@@ -4,12 +4,25 @@ if not status then
   return
 end
 
--- 列表操作快捷键
-local list_keys = require('keybinding').nvimTreeList
+
+local function my_on_attach(bufnr)
+    local api = require "nvim-tree.api"
+  
+    local function opts(desc)
+      return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+  
+    -- default mappings
+    api.config.mappings.default_on_attach(bufnr)
+  
+    -- custom mappings
+    vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
+  end
+  
 nvim_tree.setup({
     -- 不显示 git 状态图标
     git = {
-        enable = false,
+        enable = true,
     },
     -- project plugin 需要这样设置
     update_cwd = true,
@@ -32,7 +45,6 @@ nvim_tree.setup({
         -- 自定义列表中快捷键
         mappings = {
             custom_only = false,
-            list = list_keys,
         },
         -- 不显示行数
         number = false,
@@ -48,14 +60,13 @@ nvim_tree.setup({
             quit_on_open = true,
         },
     },
-    -- wsl install -g wsl-open
-    -- https://github.com/4U6U57/wsl-open/
-    -- system_open = {
-    --     cmd = 'wsl-open', -- mac 直接设置为 open
-    --    },
+
+    on_attach = my_on_attach,
+
 })
 -- 自动关闭
+--[=[
 vim.cmd([[
   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 ]])
-
+]=]

@@ -1,5 +1,5 @@
 -- utf8
-vim.g.encoding = "UTF-8"
+vim.g.encoding = "utf-8"
 vim.o.fileencoding = 'utf-8'
 -- jkhl 移动时光标周围保留8行
 vim.o.scrolloff = 8
@@ -12,7 +12,7 @@ vim.wo.cursorline = true
 -- 显示左侧图标指示列
 vim.wo.signcolumn = "yes"
 -- 右侧参考线，超过表示代码太长了，考虑换行
-vim.wo.colorcolumn = "80"
+vim.wo.colorcolumn = "120"
 -- 缩进2个空格等于一个Tab
 vim.o.tabstop = 2
 vim.bo.tabstop = 2
@@ -32,7 +32,7 @@ vim.o.smartindent = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 -- 搜索不要高亮
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 -- 边输入边搜索
 vim.o.incsearch = true
 -- 命令行高为2，提供足够的显示空间
