@@ -1,25 +1,25 @@
-local status, nvim_tree = pcall(require, "nvim-tree")
+local status, _nvim_tree = pcall(require, "nvim-tree")
 if not status then
     vim.notify("没有找到 nvim-tree")
-  return
+    return
 end
 
 
 local function my_on_attach(bufnr)
     local api = require "nvim-tree.api"
-  
+
     local function opts(desc)
-      return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
     end
-  
+
     -- default mappings
     api.config.mappings.default_on_attach(bufnr)
-  
+
     -- custom mappings
-    vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
-  end
-  
-nvim_tree.setup({
+    vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+end
+
+_nvim_tree.setup({
     -- 不显示 git 状态图标
     git = {
         enable = true,
