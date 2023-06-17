@@ -39,9 +39,13 @@
             "nvim-lua/plenary.nvim"
         }
     },
-});
-
+    "nvim-treesitter/nvim-treesitter",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim", -- 这个相当于mason.nvim和lspconfig的桥梁
+    "neovim/nvim-lspconfig"
+  });
 
 require("config.nvim-tree")
 require("config.noice")
+require("config.nvim-treesitter")
 require("which-key").setup({})
