@@ -39,13 +39,38 @@
             "nvim-lua/plenary.nvim"
         }
     },
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = {
+            "nvim-tree/nvim-web-devicons"
+        }
+    },
+    {
+        'akinsho/bufferline.nvim', 
+        version = "*", 
+        dependencies = 'nvim-tree/nvim-web-devicons'
+    },
+    {'akinsho/toggleterm.nvim', version = "*", config = true},
     "nvim-treesitter/nvim-treesitter",
-    "williamboman/mason.nvim",
+    {
+      "williamboman/mason.nvim",
+      build = ":MasonUpdate" 
+    },
     "williamboman/mason-lspconfig.nvim", -- 这个相当于mason.nvim和lspconfig的桥梁
     "neovim/nvim-lspconfig"
   });
 
 require("config.nvim-tree")
 require("config.noice")
+require("config.lualine")
+require("config.bufferline")
+require("config.toggleterm")
 require("config.nvim-treesitter")
 require("which-key").setup({})
+
+
+-- LSP CONFIG
+require("lsp.setup")
+
+
+--
