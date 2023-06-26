@@ -19,3 +19,7 @@ require("basic")
 require("keybindings")
 require("plugins")
 require("colorschemes")
+
+require("lsp.setup")
+ 
+

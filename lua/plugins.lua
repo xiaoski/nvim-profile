@@ -57,7 +57,17 @@
       build = ":MasonUpdate" 
     },
     "williamboman/mason-lspconfig.nvim", -- 这个相当于mason.nvim和lspconfig的桥梁
-    "neovim/nvim-lspconfig"
+    "neovim/nvim-lspconfig",
+     -- 补全源
+     "hrsh7th/nvim-cmp",
+     "hrsh7th/vim-vsnip",
+     "hrsh7th/cmp-vsnip",
+     "hrsh7th/cmp-nvim-lsp", -- { name = nvim_lsp }
+     "hrsh7th/cmp-buffer", -- { name = 'buffer' },
+     "hrsh7th/cmp-path", -- { name = 'path' }
+     "hrsh7th/cmp-cmdline", -- { name = 'cmdline' }
+     "hrsh7th/cmp-nvim-lsp-signature-help", -- { name = 'nvim_lsp_signature_help' }
+     "rafamadriz/friendly-snippets",
   });
 
 require("config.nvim-tree")
@@ -67,10 +77,5 @@ require("config.bufferline")
 require("config.toggleterm")
 require("config.nvim-treesitter")
 require("which-key").setup({})
-
-
--- LSP CONFIG
-require("lsp.setup")
-
 
 --
